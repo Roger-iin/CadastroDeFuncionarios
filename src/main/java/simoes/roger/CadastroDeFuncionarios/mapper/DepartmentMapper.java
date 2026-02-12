@@ -10,7 +10,7 @@ public class DepartmentMapper {
 
     public DepartmentResponseDTO toResponseDTO(DepartmentModel department){
         DepartmentResponseDTO dto = new DepartmentResponseDTO();
-        dto.setId(dto.getId());
+        dto.setId(department.getId());
         dto.setDepartmentName(department.getDepartmentName());
 
         return dto;
