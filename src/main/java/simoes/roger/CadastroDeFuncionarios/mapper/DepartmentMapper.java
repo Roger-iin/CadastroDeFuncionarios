@@ -8,7 +8,7 @@ import simoes.roger.CadastroDeFuncionarios.model.DepartmentModel;
 @Component
 public class DepartmentMapper {
 
-    public static DepartmentResponseDTO toResponseDTO(DepartmentModel department){
+    public DepartmentResponseDTO toResponseDTO(DepartmentModel department){
         DepartmentResponseDTO dto = new DepartmentResponseDTO();
         dto.setId(dto.getId());
         dto.setDepartmentName(department.getDepartmentName());
@@ -16,15 +16,11 @@ public class DepartmentMapper {
         return dto;
     }
 
-    public static DepartmentModel toEntity(DepartmentRequestDTO dto){
+    public DepartmentModel toEntity(DepartmentRequestDTO dto){
         DepartmentModel department = new DepartmentModel();
         department.setDepartmentName(dto.getDepartmentName());
 
         return department;
-    }
-
-    public static void updateEntity(DepartmentModel department, DepartmentRequestDTO dto){
-        department.setDepartmentName(dto.getDepartmentName());
     }
 
 }
