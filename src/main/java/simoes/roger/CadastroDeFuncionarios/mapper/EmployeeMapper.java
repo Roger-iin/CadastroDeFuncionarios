@@ -9,13 +9,19 @@ import simoes.roger.CadastroDeFuncionarios.model.EmployeeModel;
 @Component
 public class EmployeeMapper {
 
+    private final DepartmentMapper departmentMapper;
+
+    public EmployeeMapper(DepartmentMapper departmentMapper) {
+        this.departmentMapper = departmentMapper;
+    }
+
     public EmployeeResponseDTO toResponseDTO(EmployeeModel employee){
         EmployeeResponseDTO dto = new EmployeeResponseDTO();
         dto.setId(employee.getId());
         dto.setName(employee.getName());
         dto.setAge(employee.getAge());
         dto.setEmail(employee.getEmail());
-        dto.setDepartment(DepartmentMapper.toResponseDTO(employee.getDepartment()));
+        dto.setDepartment(departmentMapper.toResponseDTO(employee.getDepartment()));
 
         return dto;
     }
@@ -29,13 +35,6 @@ public class EmployeeMapper {
         employee.setDepartment(department);
 
         return employee;
-    }
-
-    public static void updateEntity(EmployeeModel employee, EmployeeRequestDTO dto, DepartmentModel department){
-        employee.setName(dto.getName());
-        employee.setAge(dto.getAge());
-        employee.setEmail(dto.getEmail());
-        employee.setDepartment(department);
     }
 
 }
