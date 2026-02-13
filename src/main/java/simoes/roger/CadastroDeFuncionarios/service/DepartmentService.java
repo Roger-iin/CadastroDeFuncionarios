@@ -1,11 +1,15 @@
 package simoes.roger.CadastroDeFuncionarios.service;
 
+import org.apache.catalina.mapper.Mapper;
 import org.springframework.stereotype.Service;
 import simoes.roger.CadastroDeFuncionarios.dto.request.DepartmentRequestDTO;
 import simoes.roger.CadastroDeFuncionarios.dto.response.DepartmentResponseDTO;
 import simoes.roger.CadastroDeFuncionarios.mapper.DepartmentMapper;
 import simoes.roger.CadastroDeFuncionarios.model.DepartmentModel;
 import simoes.roger.CadastroDeFuncionarios.repository.DepartmentRepository;
+
+import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
@@ -22,5 +26,12 @@ public class DepartmentService {
         DepartmentModel department = mapper.toEntity(departmentDto);
         department = repository.save(department);
         return mapper.toResponseDTO(department);
+    }
+
+    public List<DepartmentResponseDTO> findAll(){
+        return repository.findAll()
+                .stream()
+                .map(mapper::toResponseDTO)
+                .toList();
     }
 }
