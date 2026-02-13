@@ -8,7 +8,7 @@ import simoes.roger.CadastroDeFuncionarios.dto.response.EmployeeResponseDTO;
 import simoes.roger.CadastroDeFuncionarios.service.EmployeeService;
 
 @RestController
-@RequestMapping("employee")
+@RequestMapping("employees")
 public class EmployeeController {
 
     private final EmployeeService employeeService;
@@ -17,7 +17,7 @@ public class EmployeeController {
         this.employeeService = employeeService;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<EmployeeResponseDTO> create(@RequestBody EmployeeRequestDTO employeeDto){
         EmployeeResponseDTO employeeCreated = employeeService.create(employeeDto);
         return ResponseEntity.status(HttpStatus.CREATED)
