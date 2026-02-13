@@ -10,7 +10,7 @@ import simoes.roger.CadastroDeFuncionarios.service.DepartmentService;
 import java.util.List;
 
 @RestController
-@RequestMapping("department")
+@RequestMapping("departments")
 public class DepartmentController {
 
     private final DepartmentService service;
@@ -19,7 +19,7 @@ public class DepartmentController {
         this.service = service;
     }
 
-    @PostMapping("/create")
+    @PostMapping
     public ResponseEntity<DepartmentResponseDTO> create(@RequestBody DepartmentRequestDTO departmentDto){
         DepartmentResponseDTO departmentCreated = service.create(departmentDto);
         return ResponseEntity.status(HttpStatus.CREATED)
