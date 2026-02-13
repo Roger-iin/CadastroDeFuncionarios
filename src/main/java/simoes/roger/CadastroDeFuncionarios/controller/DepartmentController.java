@@ -35,4 +35,10 @@ public class DepartmentController {
     public ResponseEntity<DepartmentResponseDTO> findById(@PathVariable Long id){
         return ResponseEntity.ok(service.findById(id));
     }
+
+    @DeleteMapping("/{id}")
+    public ResponseEntity<Void> delete(@PathVariable Long id){
+        service.delete(id);
+        return ResponseEntity.noContent().build();
+    }
 }
