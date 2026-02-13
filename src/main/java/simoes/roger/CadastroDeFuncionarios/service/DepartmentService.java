@@ -1,6 +1,6 @@
 package simoes.roger.CadastroDeFuncionarios.service;
 
-import org.apache.catalina.mapper.Mapper;
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import simoes.roger.CadastroDeFuncionarios.dto.request.DepartmentRequestDTO;
 import simoes.roger.CadastroDeFuncionarios.dto.response.DepartmentResponseDTO;
@@ -9,7 +9,6 @@ import simoes.roger.CadastroDeFuncionarios.model.DepartmentModel;
 import simoes.roger.CadastroDeFuncionarios.repository.DepartmentRepository;
 
 import java.util.List;
-import java.util.stream.Collectors;
 
 @Service
 public class DepartmentService {
@@ -33,5 +32,11 @@ public class DepartmentService {
                 .stream()
                 .map(mapper::toResponseDTO)
                 .toList();
+    }
+
+    public DepartmentResponseDTO findById(Long id){
+        return repository.findById(id)
+                .map(mapper::toResponseDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Department not found"));
     }
 }
