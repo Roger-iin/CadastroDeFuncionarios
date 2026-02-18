@@ -46,6 +46,12 @@ public class EmployeeService {
                 .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
     }
 
+    public void delete(Long id){
+        EmployeeModel employee = employeeRepository.findById(id)
+                        .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
+        employeeRepository.delete(employee);
+    }
+
 
 
 }
