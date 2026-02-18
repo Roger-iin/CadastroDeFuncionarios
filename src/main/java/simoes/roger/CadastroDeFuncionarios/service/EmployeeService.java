@@ -1,5 +1,6 @@
 package simoes.roger.CadastroDeFuncionarios.service;
 
+import jakarta.persistence.EntityNotFoundException;
 import org.springframework.stereotype.Service;
 import simoes.roger.CadastroDeFuncionarios.dto.request.EmployeeRequestDTO;
 import simoes.roger.CadastroDeFuncionarios.dto.response.EmployeeResponseDTO;
@@ -37,6 +38,12 @@ public class EmployeeService {
                 .stream()
                 .map(mapper::toResponseDTO)
                 .toList();
+    }
+
+    public EmployeeResponseDTO listById(Long id){
+        return employeeRepository.findById(id)
+                .map(mapper::toResponseDTO)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
     }
 
 
