@@ -52,6 +52,15 @@ public class EmployeeService {
         employeeRepository.delete(employee);
     }
 
+    public EmployeeResponseDTO update(Long id, EmployeeRequestDTO dto){
+        EmployeeModel employee = employeeRepository.findById(id)
+                .orElseThrow(() -> new EntityNotFoundException("Employee not found"));
+        DepartmentModel department = departmentRepository.findById(dto.getDepartmentId())
+                        .orElseThrow(() -> new EntityNotFoundException("Department not found"));
+
+        mapper.updateEntity(employee, dto, department);
+        return mapper.toResponseDTO(employeeRepository.save(employee));
+    }
 
 
 }
