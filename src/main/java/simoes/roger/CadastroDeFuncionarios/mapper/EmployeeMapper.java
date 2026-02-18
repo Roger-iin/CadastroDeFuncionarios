@@ -37,4 +37,11 @@ public class EmployeeMapper {
         return employee;
     }
 
+    public void updateEntity(EmployeeModel employee, EmployeeRequestDTO dto, DepartmentModel department){
+        employee.setName(dto.getName());
+        employee.setAge(dto.getAge());
+        employee.setEmail(dto.getEmail());
+        employee.setDepartment(department);
+    }
+
 }
