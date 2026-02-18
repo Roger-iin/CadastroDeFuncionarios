@@ -45,4 +45,11 @@ public class DepartmentService {
                 .orElseThrow(() -> new EntityNotFoundException("Department not found"));
         repository.deleteById(id);
     }
+
+    public DepartmentResponseDTO update(Long id, DepartmentRequestDTO dto){
+         DepartmentModel department = repository.findById(id)
+                 .orElseThrow(() -> new EntityNotFoundException("Department not found"));
+         mapper.updateEntity(department, dto);
+         return  mapper.toResponseDTO(repository.save(department));
+    }
 }
