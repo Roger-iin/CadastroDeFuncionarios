@@ -23,4 +23,8 @@ public class DepartmentMapper {
         return department;
     }
 
+    public void updateEntity(DepartmentModel department, DepartmentRequestDTO dto){
+        department.setDepartmentName(dto.getDepartmentName());
+    }
+
 }
