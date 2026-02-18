@@ -9,6 +9,8 @@ import simoes.roger.CadastroDeFuncionarios.model.EmployeeModel;
 import simoes.roger.CadastroDeFuncionarios.repository.DepartmentRepository;
 import simoes.roger.CadastroDeFuncionarios.repository.EmployeeRepository;
 
+import java.util.List;
+
 @Service
 public class EmployeeService {
     private final EmployeeRepository employeeRepository;
@@ -28,6 +30,13 @@ public class EmployeeService {
         employee = employeeRepository.save(employee);
 
         return mapper.toResponseDTO(employee);
+    }
+
+    public List<EmployeeResponseDTO> listAll(){
+        return employeeRepository.findAll()
+                .stream()
+                .map(mapper::toResponseDTO)
+                .toList();
     }
 
 
