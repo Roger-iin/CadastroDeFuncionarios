@@ -7,6 +7,8 @@ import simoes.roger.CadastroDeFuncionarios.dto.request.EmployeeRequestDTO;
 import simoes.roger.CadastroDeFuncionarios.dto.response.EmployeeResponseDTO;
 import simoes.roger.CadastroDeFuncionarios.service.EmployeeService;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("employees")
 public class EmployeeController {
@@ -22,6 +24,11 @@ public class EmployeeController {
         EmployeeResponseDTO employeeCreated = employeeService.create(employeeDto);
         return ResponseEntity.status(HttpStatus.CREATED)
                 .body(employeeCreated);
+    }
+
+    @GetMapping
+    public ResponseEntity<List<EmployeeResponseDTO>> listAll(){
+        return ResponseEntity.ok(employeeService.listAll());
     }
 
 }
