@@ -41,4 +41,9 @@ public class DepartmentController {
         service.delete(id);
         return ResponseEntity.noContent().build();
     }
+
+    @PutMapping("/{id}")
+    public ResponseEntity<DepartmentResponseDTO> update(@PathVariable Long id, @RequestBody DepartmentRequestDTO departmentDTO){
+        return ResponseEntity.ok(service.update(id, departmentDTO));
+    }
 }
