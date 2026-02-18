@@ -31,4 +31,9 @@ public class EmployeeController {
         return ResponseEntity.ok(employeeService.listAll());
     }
 
+    @GetMapping("/{id}")
+    public ResponseEntity<EmployeeResponseDTO> listById(@PathVariable Long id){
+        return ResponseEntity.ok(employeeService.listById(id));
+    }
+
 }
